@@ -1,9 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://coe8pqq3yp4se"]
+[gd_scene load_steps=11 format=3 uid="uid://coe8pqq3yp4se"]
 
 [ext_resource type="Texture2D" uid="uid://cv04akyx3pave" path="res://art/background.png" id="1_ebefu"]
+[ext_resource type="Script" path="res://scripts/Level.gd" id="1_qby6n"]
 [ext_resource type="PackedScene" uid="uid://sfioex6akb7p" path="res://scenes/Wave.tscn" id="2_mipe6"]
+[ext_resource type="PackedScene" uid="uid://bytpoorn0i7jt" path="res://scenes/Frog.tscn" id="3_wtld1"]
+[ext_resource type="PackedScene" uid="uid://e5or8c0d41u3" path="res://scenes/Vehicules/Car1.tscn" id="4_e7a4m"]
+[ext_resource type="PackedScene" uid="uid://dcwun4osymsjp" path="res://scenes/Vehicules/Car2.tscn" id="6_oqihw"]
+[ext_resource type="PackedScene" uid="uid://vjyh7a4qauos" path="res://scenes/Vehicules/Car3.tscn" id="7_u1if7"]
+[ext_resource type="PackedScene" uid="uid://bug7y6x02ppx4" path="res://scenes/Vehicules/Truck1.tscn" id="8_ed0nk"]
+[ext_resource type="PackedScene" uid="uid://dyw5flvx7s8up" path="res://scenes/Vehicules/Truck3.tscn" id="9_1o6dn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eykrh"]
+size = Vector2(1278, 738)
 
 [node name="Level" type="Node2D"]
+script = ExtResource("1_qby6n")
 
 [node name="Background" type="Sprite2D" parent="."]
 texture = ExtResource("1_ebefu")
@@ -76,3 +87,59 @@ position = Vector2(1040, 163)
 
 [node name="Wave22" parent="Waves" instance=ExtResource("2_mipe6")]
 position = Vector2(1110, 259)
+
+[node name="Frog" parent="." instance=ExtResource("3_wtld1")]
+position = Vector2(437, 884)
+scale = Vector2(0.645, 0.645)
+
+[node name="Vehicules" type="Node2D" parent="."]
+
+[node name="Vehicule" parent="Vehicules" instance=ExtResource("4_e7a4m")]
+position = Vector2(-63, 806)
+speed = 225.0
+
+[node name="Vehicule2" parent="Vehicules" instance=ExtResource("8_ed0nk")]
+position = Vector2(-285, 805)
+speed = 225.0
+
+[node name="Vehicule3" parent="Vehicules" instance=ExtResource("6_oqihw")]
+position = Vector2(-663, 807)
+speed = 225.0
+
+[node name="RestartOnExit" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RestartOnExit"]
+visible = false
+position = Vector2(444, 486)
+shape = SubResource("RectangleShape2D_eykrh")
+
+[node name="LowerRight" type="Node2D" parent="."]
+position = Vector2(912, 968)
+
+[node name="Vehicule" parent="." instance=ExtResource("7_u1if7")]
+position = Vector2(-175, 711)
+
+[node name="Vehicule2" parent="." instance=ExtResource("9_1o6dn")]
+position = Vector2(-597, 713)
+
+[node name="Vehicule3" parent="." instance=ExtResource("6_oqihw")]
+position = Vector2(997, 635)
+direction = 1
+speed = 325.0
+
+[node name="Vehicule4" parent="." instance=ExtResource("4_e7a4m")]
+position = Vector2(1221, 639)
+direction = 1
+speed = 325.0
+
+[node name="Vehicule5" parent="." instance=ExtResource("9_1o6dn")]
+position = Vector2(1199, 553)
+direction = 1
+speed = 300.0
+
+[node name="Vehicule6" parent="." instance=ExtResource("8_ed0nk")]
+position = Vector2(1543, 559)
+direction = 1
+speed = 300.0
+
+[connection signal="area_exited" from="RestartOnExit" to="." method="_on_restart_on_exit_area_exited"]

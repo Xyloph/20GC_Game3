@@ -1,24 +1,154 @@
-[gd_scene load_steps=5 format=3 uid="uid://bytpoorn0i7jt"]
+[gd_scene load_steps=9 format=3 uid="uid://bytpoorn0i7jt"]
 
 [ext_resource type="Script" path="res://scripts/frog.gd" id="1_0wfnc"]
 [ext_resource type="Texture2D" uid="uid://b3xs2128j4lb4" path="res://art/frog-idle.png" id="1_i777g"]
 [ext_resource type="Texture2D" uid="uid://cbf3odljwhofm" path="res://art/frog-jump.png" id="3_buntk"]
 
+[sub_resource type="Animation" id="Animation_t2iaf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Frog-idle:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Frog-idle:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Frog-jump:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Frog-jump:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 0.664805)]
+}
+
+[sub_resource type="Animation" id="Animation_bolq0"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Frog-idle:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Frog-idle:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hvge4"]
+resource_name = "jump"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Frog-idle:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Frog-jump:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Frog-jump:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 0.664805), Vector2(1, 1), Vector2(1, 0.664805)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nanq0"]
+_data = {
+"RESET": SubResource("Animation_t2iaf"),
+"idle": SubResource("Animation_bolq0"),
+"jump": SubResource("Animation_hvge4")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4fs7i"]
-size = Vector2(133, 100)
+size = Vector2(94, 92)
 
 [node name="Frog" type="CharacterBody2D"]
 script = ExtResource("1_0wfnc")
 
 [node name="Frog-idle" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("1_i777g")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nanq0")
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 1)
 shape = SubResource("RectangleShape2D_4fs7i")
 
 [node name="Frog-jump" type="Sprite2D" parent="."]
-visible = false
+position = Vector2(0, 1.5)
+scale = Vector2(1, 0.664805)
 texture = ExtResource("3_buntk")

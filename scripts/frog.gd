@@ -1,11 +1,61 @@
 extends CharacterBody2D
 class_name Frog
 
+@onready var anim: AnimationPlayer = $AnimationPlayer
+@onready var frog_idle: Sprite2D = $"Frog-idle"
+@onready var frog_jump: Sprite2D = $"Frog-jump"
+@onready var frog: Frog = $"."
+
+
+const travel_distance := 85.0 # this is equally abstract as the hand-drawn level
+var moving := false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
+	frog_jump.hide()
+	frog_idle.show()
+	anim.play("idle")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
+	
+func _unhandled_key_input(event: InputEvent) -> void:
+	if not moving:
+		var target_position = Vector2(position)
+		if event.is_action("ui_left"):
+			# move left
+			moving = true
+			rotation = 3*PI/2
+			target_position.x -= travel_distance
+			pass
+		elif event.is_action("ui_right"):
+			# move right
+			moving = true
+			rotation = PI / 2
+			target_position.x += travel_distance
+			pass
+		elif event.is_action("ui_up"):
+			# move up
+			moving = true
+			rotation = 0
+			target_position.y -= travel_distance
+			pass
+		elif event.is_action("ui_down"):
+			# move down
+			moving = true
+			rotation = PI
+			target_position.y += travel_distance
+			pass
+		get_viewport().set_input_as_handled()
+		if moving:
+			anim.play("jump")
+			var move_tween = get_tree().create_tween()
+			move_tween.tween_property(frog, "position", target_position, 0.5)
+			move_tween.tween_callback(_done_moving)
+	
+func _done_moving() -> void:
+	moving = false
+	frog_idle.show()
+	frog_jump.hide()
+	anim.play("idle")
