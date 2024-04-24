@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://sfioex6akb7p"]
+
+[ext_resource type="Script" path="res://scripts/Wave.gd" id="1_iijky"]
+[ext_resource type="Texture2D" uid="uid://bbd63236lh7gt" path="res://art/wave1.png" id="2_ixgx5"]
+
+[sub_resource type="Curve2D" id="Curve2D_uxfl4"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -1, 0, 43.2652, 15.7529, -43.2652, -15.7529, -59, -18, 0, 0, 0, 0, -120, -57, 32.0724, -21.3816, -32.0724, 21.3816, -173, -29, 0, 0, 0, 0, -261, -9)
+}
+point_count = 5
+
+[node name="Wave" type="Node2D"]
+script = ExtResource("1_iijky")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_uxfl4")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-1, 0)
+rotates = false
+loop = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D"]
+texture = ExtResource("2_ixgx5")

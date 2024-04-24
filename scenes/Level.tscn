@@ -1,0 +1,78 @@
+[gd_scene load_steps=3 format=3 uid="uid://coe8pqq3yp4se"]
+
+[ext_resource type="Texture2D" uid="uid://cv04akyx3pave" path="res://art/background.png" id="1_ebefu"]
+[ext_resource type="PackedScene" uid="uid://sfioex6akb7p" path="res://scenes/Wave.tscn" id="2_mipe6"]
+
+[node name="Level" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_ebefu")
+centered = false
+
+[node name="Waves" type="Node2D" parent="."]
+
+[node name="Wave" parent="Waves" instance=ExtResource("2_mipe6")]
+position = Vector2(107, 171)
+
+[node name="Wave2" parent="Waves" instance=ExtResource("2_mipe6")]
+position = Vector2(155, 239)
+
+[node name="Wave3" parent="Waves" instance=ExtResource("2_mipe6")]
+position = Vector2(103, 321)
+
+[node name="Wave4" parent="Waves" instance=ExtResource("2_mipe6")]
+position = Vector2(187, 377)
+
+[node name="Wave5" parent="Waves" instance=ExtResource("2_mipe6")]
+position = Vector2(280, 322)
+
+[node name="Wave6" parent="Waves" instance=ExtResource("2_mipe6")]
+position = Vector2(330, 258)
+
+[node name="Wave7" parent="Waves" instance=ExtResource("2_mipe6")]
+position = Vector2(244, 187)
+
+[node name="Wave8" parent="Waves" instance=ExtResource("2_mipe6")]
+position = Vector2(401, 405)
+
+[node name="Wave9" parent="Waves" instance=ExtResource("2_mipe6")]
+position = Vector2(462, 333)
+
+[node name="Wave10" parent="Waves" instance=ExtResource("2_mipe6")]
+position = Vector2(436, 205)
+
+[node name="Wave11" parent="Waves" instance=ExtResource("2_mipe6")]
+position = Vector2(586, 197)
+
+[node name="Wave12" parent="Waves" instance=ExtResource("2_mipe6")]
+position = Vector2(619, 275)
+
+[node name="Wave13" parent="Waves" instance=ExtResource("2_mipe6")]
+position = Vector2(586, 387)
+
+[node name="Wave14" parent="Waves" instance=ExtResource("2_mipe6")]
+position = Vector2(702, 343)
+
+[node name="Wave15" parent="Waves" instance=ExtResource("2_mipe6")]
+position = Vector2(840, 397)
+
+[node name="Wave16" parent="Waves" instance=ExtResource("2_mipe6")]
+position = Vector2(790, 301)
+
+[node name="Wave17" parent="Waves" instance=ExtResource("2_mipe6")]
+position = Vector2(735, 232)
+
+[node name="Wave18" parent="Waves" instance=ExtResource("2_mipe6")]
+position = Vector2(875, 204)
+
+[node name="Wave19" parent="Waves" instance=ExtResource("2_mipe6")]
+position = Vector2(1020, 304)
+
+[node name="Wave20" parent="Waves" instance=ExtResource("2_mipe6")]
+position = Vector2(1007, 389)
+
+[node name="Wave21" parent="Waves" instance=ExtResource("2_mipe6")]
+position = Vector2(1040, 163)
+
+[node name="Wave22" parent="Waves" instance=ExtResource("2_mipe6")]
+position = Vector2(1110, 259)
