@@ -9,6 +9,8 @@ class_name Frog
 
 const travel_distance := 85.0 # this is equally abstract as the hand-drawn level
 var moving := false
+var log_velocity := Vector2(0.,0.)
+var attached_log : WaterThing
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,8 +19,9 @@ func _ready() -> void:
 	anim.play("idle")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
+func _process(delta: float) -> void:
+	if not moving:
+		position = position.lerp(position+ log_velocity, delta)
 	
 func _unhandled_key_input(event: InputEvent) -> void:
 	if not moving:
@@ -59,3 +62,13 @@ func _done_moving() -> void:
 	frog_idle.show()
 	frog_jump.hide()
 	anim.play("idle")
+	
+func follow_log(floating_log:WaterThing):
+	attached_log = floating_log
+	log_velocity = floating_log.get_velocity()
+	pass
+	
+func unfollow_log(floating_log:WaterThing):
+	if attached_log == floating_log:
+		log_velocity = Vector2.ZERO
+	pass

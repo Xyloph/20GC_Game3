@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://coe8pqq3yp4se"]
+[gd_scene load_steps=14 format=3 uid="uid://coe8pqq3yp4se"]
 
 [ext_resource type="Texture2D" uid="uid://cv04akyx3pave" path="res://art/background.png" id="1_ebefu"]
 [ext_resource type="Script" path="res://scripts/Level.gd" id="1_qby6n"]
@@ -9,9 +9,12 @@
 [ext_resource type="PackedScene" uid="uid://vjyh7a4qauos" path="res://scenes/Vehicules/Car3.tscn" id="7_u1if7"]
 [ext_resource type="PackedScene" uid="uid://bug7y6x02ppx4" path="res://scenes/Vehicules/Truck1.tscn" id="8_ed0nk"]
 [ext_resource type="PackedScene" uid="uid://dyw5flvx7s8up" path="res://scenes/Vehicules/Truck3.tscn" id="9_1o6dn"]
+[ext_resource type="PackedScene" uid="uid://dkorc7bphdjc7" path="res://scenes/WaterStuff/Log1.tscn" id="10_lkfi0"]
+[ext_resource type="PackedScene" uid="uid://b6535q230xmos" path="res://scenes/Lillypad.tscn" id="11_lui3d"]
+[ext_resource type="PackedScene" uid="uid://kdrwe6r5rxot" path="res://scenes/WaterStuff/Log3.tscn" id="13_steyq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eykrh"]
-size = Vector2(1278, 738)
+size = Vector2(1440, 738)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_qby6n")
@@ -88,6 +91,65 @@ position = Vector2(1040, 163)
 [node name="Wave22" parent="Waves" instance=ExtResource("2_mipe6")]
 position = Vector2(1110, 259)
 
+[node name="Logs" type="Node2D" parent="."]
+
+[node name="WaterThing" parent="Logs" instance=ExtResource("10_lkfi0")]
+position = Vector2(1057, 375)
+direction = 1
+speed = 145.0
+
+[node name="WaterThing4" parent="Logs" instance=ExtResource("10_lkfi0")]
+position = Vector2(1479, 373)
+direction = 1
+speed = 145.0
+
+[node name="WaterThing5" parent="Logs" instance=ExtResource("13_steyq")]
+position = Vector2(1133, 286)
+direction = 1
+speed = 175.0
+
+[node name="WaterThing6" parent="Logs" instance=ExtResource("13_steyq")]
+position = Vector2(1463, 286)
+direction = 1
+speed = 175.0
+
+[node name="WaterThing7" parent="Logs" instance=ExtResource("10_lkfi0")]
+position = Vector2(1883, 288)
+direction = 1
+speed = 175.0
+
+[node name="WaterThing10" parent="Logs" instance=ExtResource("10_lkfi0")]
+position = Vector2(1211, 193)
+direction = 1
+speed = 130.0
+
+[node name="WaterThing11" parent="Logs" instance=ExtResource("13_steyq")]
+position = Vector2(1619, 199)
+direction = 1
+speed = 130.0
+
+[node name="WaterThing12" parent="Logs" instance=ExtResource("10_lkfi0")]
+position = Vector2(1925, 197)
+direction = 1
+speed = 130.0
+
+[node name="Pads" type="Node2D" parent="."]
+
+[node name="Lillypad" parent="Pads" instance=ExtResource("11_lui3d")]
+position = Vector2(88, 96)
+
+[node name="Lillypad2" parent="Pads" instance=ExtResource("11_lui3d")]
+position = Vector2(264, 102)
+
+[node name="Lillypad3" parent="Pads" instance=ExtResource("11_lui3d")]
+position = Vector2(422, 102)
+
+[node name="Lillypad4" parent="Pads" instance=ExtResource("11_lui3d")]
+position = Vector2(600, 98)
+
+[node name="Lillypad5" parent="Pads" instance=ExtResource("11_lui3d")]
+position = Vector2(750, 100)
+
 [node name="Frog" parent="." instance=ExtResource("3_wtld1")]
 position = Vector2(437, 884)
 scale = Vector2(0.645, 0.645)
@@ -106,40 +168,37 @@ speed = 225.0
 position = Vector2(-663, 807)
 speed = 225.0
 
-[node name="RestartOnExit" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RestartOnExit"]
-visible = false
-position = Vector2(444, 486)
-shape = SubResource("RectangleShape2D_eykrh")
-
-[node name="LowerRight" type="Node2D" parent="."]
-position = Vector2(912, 968)
-
-[node name="Vehicule" parent="." instance=ExtResource("7_u1if7")]
+[node name="Vehicule4" parent="Vehicules" instance=ExtResource("7_u1if7")]
 position = Vector2(-175, 711)
 
-[node name="Vehicule2" parent="." instance=ExtResource("9_1o6dn")]
+[node name="Vehicule5" parent="Vehicules" instance=ExtResource("9_1o6dn")]
 position = Vector2(-597, 713)
 
-[node name="Vehicule3" parent="." instance=ExtResource("6_oqihw")]
+[node name="Vehicule6" parent="Vehicules" instance=ExtResource("6_oqihw")]
 position = Vector2(997, 635)
 direction = 1
 speed = 325.0
 
-[node name="Vehicule4" parent="." instance=ExtResource("4_e7a4m")]
+[node name="Vehicule7" parent="Vehicules" instance=ExtResource("4_e7a4m")]
 position = Vector2(1221, 639)
 direction = 1
 speed = 325.0
 
-[node name="Vehicule5" parent="." instance=ExtResource("9_1o6dn")]
+[node name="Vehicule8" parent="Vehicules" instance=ExtResource("9_1o6dn")]
 position = Vector2(1199, 553)
 direction = 1
 speed = 300.0
 
-[node name="Vehicule6" parent="." instance=ExtResource("8_ed0nk")]
+[node name="Vehicule9" parent="Vehicules" instance=ExtResource("8_ed0nk")]
 position = Vector2(1543, 559)
 direction = 1
 speed = 300.0
+
+[node name="RestartOnExit" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RestartOnExit"]
+visible = false
+position = Vector2(465, 486)
+shape = SubResource("RectangleShape2D_eykrh")
 
 [connection signal="area_exited" from="RestartOnExit" to="." method="_on_restart_on_exit_area_exited"]
