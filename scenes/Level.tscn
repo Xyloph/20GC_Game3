@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://coe8pqq3yp4se"]
+[gd_scene load_steps=15 format=3 uid="uid://coe8pqq3yp4se"]
 
 [ext_resource type="Texture2D" uid="uid://cv04akyx3pave" path="res://art/background.png" id="1_ebefu"]
 [ext_resource type="Script" path="res://scripts/Level.gd" id="1_qby6n"]
@@ -15,6 +15,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eykrh"]
 size = Vector2(1440, 738)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bmb4c"]
+size = Vector2(912, 239)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_qby6n")
@@ -96,27 +99,29 @@ position = Vector2(1110, 259)
 [node name="WaterThing" parent="Logs" instance=ExtResource("10_lkfi0")]
 position = Vector2(1057, 375)
 direction = 1
-speed = 145.0
+speed = 125.0
 
 [node name="WaterThing4" parent="Logs" instance=ExtResource("10_lkfi0")]
 position = Vector2(1479, 373)
 direction = 1
-speed = 145.0
+speed = 125.0
+
+[node name="WaterThing8" parent="Logs" instance=ExtResource("10_lkfi0")]
+position = Vector2(1838, 373)
+direction = 1
+speed = 125.0
 
 [node name="WaterThing5" parent="Logs" instance=ExtResource("13_steyq")]
-position = Vector2(1133, 286)
-direction = 1
-speed = 175.0
+position = Vector2(-939, 286)
+speed = 225.0
 
 [node name="WaterThing6" parent="Logs" instance=ExtResource("13_steyq")]
-position = Vector2(1463, 286)
-direction = 1
-speed = 175.0
+position = Vector2(-609, 286)
+speed = 225.0
 
 [node name="WaterThing7" parent="Logs" instance=ExtResource("10_lkfi0")]
-position = Vector2(1883, 288)
-direction = 1
-speed = 175.0
+position = Vector2(-255, 288)
+speed = 225.0
 
 [node name="WaterThing10" parent="Logs" instance=ExtResource("10_lkfi0")]
 position = Vector2(1211, 193)
@@ -129,7 +134,7 @@ direction = 1
 speed = 130.0
 
 [node name="WaterThing12" parent="Logs" instance=ExtResource("10_lkfi0")]
-position = Vector2(1925, 197)
+position = Vector2(1963, 197)
 direction = 1
 speed = 130.0
 
@@ -164,10 +169,6 @@ speed = 225.0
 position = Vector2(-285, 805)
 speed = 225.0
 
-[node name="Vehicule3" parent="Vehicules" instance=ExtResource("6_oqihw")]
-position = Vector2(-663, 807)
-speed = 225.0
-
 [node name="Vehicule4" parent="Vehicules" instance=ExtResource("7_u1if7")]
 position = Vector2(-175, 711)
 
@@ -176,11 +177,6 @@ position = Vector2(-597, 713)
 
 [node name="Vehicule6" parent="Vehicules" instance=ExtResource("6_oqihw")]
 position = Vector2(997, 635)
-direction = 1
-speed = 325.0
-
-[node name="Vehicule7" parent="Vehicules" instance=ExtResource("4_e7a4m")]
-position = Vector2(1221, 639)
 direction = 1
 speed = 325.0
 
@@ -195,10 +191,23 @@ direction = 1
 speed = 300.0
 
 [node name="RestartOnExit" type="Area2D" parent="."]
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RestartOnExit"]
 visible = false
 position = Vector2(465, 486)
 shape = SubResource("RectangleShape2D_eykrh")
 
+[node name="DrownArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DrownArea"]
+position = Vector2(456, 288.5)
+shape = SubResource("RectangleShape2D_bmb4c")
+
+[connection signal="drowned" from="Frog" to="." method="_on_frog_drowned"]
+[connection signal="focus" from="Frog" to="." method="_on_frog_focus"]
 [connection signal="area_exited" from="RestartOnExit" to="." method="_on_restart_on_exit_area_exited"]
+[connection signal="body_entered" from="DrownArea" to="." method="_on_drown_area_body_entered"]
+[connection signal="body_exited" from="DrownArea" to="." method="_on_drown_area_body_exited"]

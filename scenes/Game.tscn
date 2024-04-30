@@ -1,7 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://biw2asivfu1hw"]
+[gd_scene load_steps=3 format=3 uid="uid://biw2asivfu1hw"]
 
 [ext_resource type="PackedScene" uid="uid://coe8pqq3yp4se" path="res://scenes/Level.tscn" id="1_hvm1j"]
+[ext_resource type="Script" path="res://scripts/Game.gd" id="1_yvqmk"]
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_yvqmk")
 
 [node name="Level" parent="." instance=ExtResource("1_hvm1j")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(456, 484)
+limit_left = 0
+limit_top = 0
+
+[node name="LowerRight" type="Marker2D" parent="."]
+position = Vector2(912, 968)
+
+[connection signal="focus_frog" from="Level" to="." method="_on_level_focus_frog"]
+[connection signal="reset_camera" from="Level" to="." method="_on_level_reset_camera"]
