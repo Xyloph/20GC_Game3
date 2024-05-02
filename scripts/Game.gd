@@ -20,7 +20,7 @@ func _process(delta: float) -> void:
 
 func _on_level_focus_frog(frog: Frog) -> void:
 	var tw := get_tree().create_tween().set_ease(Tween.EASE_IN_OUT).set_parallel()
-	tw.tween_property(camera, "zoom", Vector2(1.5,1.5),1.)
+	tw.tween_property(camera, "zoom", Vector2(1.2,1.2),1.)
 	tw.tween_property(camera, "position", frog.position, 0.5)
 
 func _on_level_reset_camera() -> void:

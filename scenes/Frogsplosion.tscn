@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://blvi3bls2wuya"]
+
+[ext_resource type="Script" path="res://scripts/Frogsplosion.gd" id="1_ooc0f"]
+[ext_resource type="Texture2D" uid="uid://ckf0gm01dwohi" path="res://art/frog_part_1.png" id="2_70aub"]
+[ext_resource type="Texture2D" uid="uid://cvf7nbku5up3f" path="res://art/frog_part_2.png" id="3_e6d5s"]
+[ext_resource type="Texture2D" uid="uid://bi583pjpbxgax" path="res://art/frog_part_3.png" id="4_eqchv"]
+[ext_resource type="Texture2D" uid="uid://df50kjx6wbcd1" path="res://art/frog_part_4.png" id="5_pnfuq"]
+[ext_resource type="Texture2D" uid="uid://dph3i8faw4wk2" path="res://art/frog_part_5.png" id="6_nxfgp"]
+
+[node name="Frogsplosion" type="Node2D"]
+visible = false
+script = ExtResource("1_ooc0f")
+
+[node name="Head" type="Sprite2D" parent="."]
+texture = ExtResource("2_70aub")
+
+[node name="Leg1" type="Sprite2D" parent="."]
+position = Vector2(-52, -47)
+texture = ExtResource("3_e6d5s")
+
+[node name="Leg2" type="Sprite2D" parent="."]
+position = Vector2(43, -39)
+texture = ExtResource("4_eqchv")
+
+[node name="Leg3" type="Sprite2D" parent="."]
+position = Vector2(-39, 43)
+texture = ExtResource("5_pnfuq")
+
+[node name="Leg4" type="Sprite2D" parent="."]
+position = Vector2(50, 44)
+texture = ExtResource("6_nxfgp")

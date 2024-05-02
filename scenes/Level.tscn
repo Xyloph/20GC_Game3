@@ -206,7 +206,7 @@ collision_mask = 2
 position = Vector2(456, 288.5)
 shape = SubResource("RectangleShape2D_bmb4c")
 
-[connection signal="drowned" from="Frog" to="." method="_on_frog_drowned"]
+[connection signal="dead" from="Frog" to="." method="_on_frog_dead"]
 [connection signal="focus" from="Frog" to="." method="_on_frog_focus"]
 [connection signal="area_exited" from="RestartOnExit" to="." method="_on_restart_on_exit_area_exited"]
 [connection signal="body_entered" from="DrownArea" to="." method="_on_drown_area_body_entered"]
