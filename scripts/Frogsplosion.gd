@@ -29,9 +29,8 @@ func play(direction: Vehicule.going) -> void:
 	var tw := get_tree().create_tween().set_parallel().set_ease(Tween.EASE_IN)
 	for i in range(5):
 		# pick a random point in the direction we were hit and move to it
-		tw.tween_property(
-			parts[i], "position", 
-			Vector2(1 if direction == Vehicule.going.right else -1, randf_range(-0.5,0.5))*randfn(400.0,100.0),
+		tw.tween_property(parts[i], "position", 
+			Vector2(1 if direction == Vehicule.going.right else -1, randf_range(-0.5,0.5))*randfn(400.0,100.0), 
 			animation_speed)
 		tw.tween_property(parts[i], "rotation", randf_range(0.0, 3.0*TAU), animation_speed)
 	
