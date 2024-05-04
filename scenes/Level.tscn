@@ -17,7 +17,7 @@
 size = Vector2(1440, 738)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bmb4c"]
-size = Vector2(912, 239)
+size = Vector2(1787, 355)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_qby6n")
@@ -203,11 +203,12 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DrownArea"]
-position = Vector2(456, 288.5)
+position = Vector2(465.5, 230.5)
 shape = SubResource("RectangleShape2D_bmb4c")
 
 [connection signal="dead" from="Frog" to="." method="_on_frog_dead"]
 [connection signal="focus" from="Frog" to="." method="_on_frog_focus"]
+[connection signal="won" from="Frog" to="." method="_on_frog_won"]
 [connection signal="area_exited" from="RestartOnExit" to="." method="_on_restart_on_exit_area_exited"]
 [connection signal="body_entered" from="DrownArea" to="." method="_on_drown_area_body_entered"]
 [connection signal="body_exited" from="DrownArea" to="." method="_on_drown_area_body_exited"]

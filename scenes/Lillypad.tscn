@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6535q230xmos"]
+[gd_scene load_steps=4 format=3 uid="uid://b6535q230xmos"]
 
 [ext_resource type="Texture2D" uid="uid://b3t5w6dnlto3p" path="res://art/lillypad.png" id="1_bsfbp"]
 [ext_resource type="Script" path="res://scripts/Lillypad.gd" id="1_ltf3m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7bovu"]
+size = Vector2(114, 108)
 
 [node name="Lillypad" type="Node2D"]
 script = ExtResource("1_ltf3m")
@@ -9,3 +12,13 @@ script = ExtResource("1_ltf3m")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_bsfbp")
+
+[node name="WinArea" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WinArea"]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_7bovu")
+debug_color = Color(0.701961, 0.243137, 0, 0.419608)
+
+[connection signal="body_entered" from="WinArea" to="." method="_on_win_area_body_entered"]

@@ -17,6 +17,7 @@ var attached_log : WaterThing
 var in_river := false
 var drowning := false
 var exploding := false
+var winning := false
 var move_tween : Tween # to be able to stop it when dying
 
 # emitted once the frog is done drowning
@@ -24,6 +25,9 @@ signal dead
 
 # emitted when the camera should focus the frog
 signal focus
+
+# emitted when the frog is on a lillypad after the drown check
+signal won
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -37,8 +41,10 @@ func _process(delta: float) -> void:
 		position = position.lerp(position+ log_velocity, delta)
 		
 		# Drown check
-		if log_velocity == Vector2.ZERO and in_river:
-			drown()
+		if log_velocity == Vector2.ZERO and in_river and not winning:
+			_drown()
+		elif winning:
+			won.emit()
 	
 func _unhandled_key_input(event: InputEvent) -> void:
 	if not moving and not drowning and not exploding:
@@ -102,7 +108,8 @@ func leave_river() -> void:
 	in_river = false
 
 # Drown animation then emit signal
-func drown() -> void:
+func _drown() -> void:
+	print("drown")
 	rotation = 0 # it looks better drowning down, so head up
 	drowning = true
 	focus.emit()
@@ -114,13 +121,14 @@ func drown() -> void:
 
 # Reset the frog vars, used after death
 func reset() -> void:
-	add_child(frogsplosion)
+	print("frog reset")
 	frog.material.set_shader_parameter("drowning",0.0)
 	exploding = false
 	in_river = false
 	drowning = false
 	moving = false
 	attached_log = null
+	winning = false
 	log_velocity = Vector2(0.,0.)
 	anim.play("idle")
 

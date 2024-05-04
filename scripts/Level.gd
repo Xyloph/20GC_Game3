@@ -4,6 +4,8 @@ extends Node2D
 @onready var frog: Frog = $Frog
 @onready var start_position := frog.position
 
+var win_count := 0
+
 # emitted when the camera should focus the frog
 signal focus_frog(frog:Frog)
 
@@ -19,6 +21,8 @@ func _ready() -> void:
 	for vehicule : Vehicule in $Vehicules.get_children():
 		# Signal.connect() - Recommended approach from doc
 		vehicule.collision.connect(_car_crash)
+	for pad : Lillypad in $Pads.get_children():
+		pad.win.connect(_winning)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -58,6 +62,17 @@ func restart() -> void:
 func _on_frog_focus() -> void:
 	focus_frog.emit(frog)
 
-
 func _on_frog_dead() -> void:
+	restart()
+	
+func _winning() -> void:
+	frog.winning = true
+	win_count += 1
+	
+	if win_count == 5:
+		# grats!
+		# TODO
+		pass
+
+func _on_frog_won() -> void:
 	restart()
