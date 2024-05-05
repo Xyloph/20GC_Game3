@@ -18,7 +18,7 @@ func _ready() -> void:
 	move_tween.tween_property(sprite, "rotation", randf_range(0.0, PI),randf_range(2.,4.))
 	move_tween.tween_property(sprite, "rotation", randf_range(0.0, PI), randf_range(2.,4.))
 
-func _on_win_area_body_entered(body: Node2D) -> void:
+func _on_win_area_body_entered(_body: Node2D) -> void:
 	if not won:
 		won = true
 		move_tween.stop()

@@ -8,7 +8,7 @@ const WAVE_4 = preload("res://art/wave4.png")
 @onready var sprite: Sprite2D = $Path2D/PathFollow2D/Sprite2D
 @onready var path: PathFollow2D = $Path2D/PathFollow2D
 @onready var path_2d: Path2D = $Path2D
-
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 signal done
 
@@ -38,7 +38,6 @@ func _ready() -> void:
 	alpha_tw.tween_property(sprite, "modulate:a", 1.0, duration / 4)
 	alpha_tw.tween_interval(duration)
 	alpha_tw.tween_property(sprite, "modulate:a", 0, duration / 4)
-		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -50,3 +49,4 @@ func _process(delta: float) -> void:
 		done.emit()
 		path.progress_ratio = 0.0
 		_ready()
+		audio_stream_player_2d.play()

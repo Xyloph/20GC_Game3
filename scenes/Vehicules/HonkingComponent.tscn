@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bg2x53qddviem"]
+
+[ext_resource type="Script" path="res://scripts/HonkingComponent.gd" id="1_irjvg"]
+[ext_resource type="AudioStream" uid="uid://ce650h71m7vni" path="res://sounds/honk.wav" id="2_ts41g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tnpbw"]
+size = Vector2(100.5, 85)
+
+[node name="HonkingComponent" type="Node2D"]
+script = ExtResource("1_irjvg")
+
+[node name="HonkPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_ts41g")
+panning_strength = 2.5
+bus = &"Honks"
+
+[node name="DetectionZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionZone"]
+position = Vector2(49.75, -0.5)
+shape = SubResource("RectangleShape2D_tnpbw")
+debug_color = Color(0.545098, 0.560784, 0.160784, 0.419608)

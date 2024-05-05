@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://sfioex6akb7p"]
+[gd_scene load_steps=5 format=3 uid="uid://sfioex6akb7p"]
 
 [ext_resource type="Script" path="res://scripts/Wave.gd" id="1_iijky"]
 [ext_resource type="Texture2D" uid="uid://bbd63236lh7gt" path="res://art/wave1.png" id="2_ixgx5"]
+[ext_resource type="AudioStream" uid="uid://dgjo202xh3yre" path="res://sounds/wave.wav" id="3_qk05o"]
 
 [sub_resource type="Curve2D" id="Curve2D_uxfl4"]
 _data = {
@@ -22,3 +23,9 @@ loop = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D"]
 texture = ExtResource("2_ixgx5")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_qk05o")
+max_distance = 600.0
+panning_strength = 2.0
+bus = &"Waves"

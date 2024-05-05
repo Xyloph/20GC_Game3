@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://rrt51yafvu0i"]
+
+[ext_resource type="AudioStream" uid="uid://d1qr1ue4q0snl" path="res://sounds/engine.wav" id="1_gbdkb"]
+
+[node name="EngineSoundComponent" type="Node2D"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_gbdkb")
+autoplay = true
+max_distance = 400.0
+panning_strength = 10.0
+bus = &"Engines"

@@ -16,10 +16,6 @@ func _ready() -> void:
 	parts.append($Leg3)
 	parts.append($Leg4)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 # set visible and start animation
 func play(direction: Vehicule.going) -> void:
 	# show ourselves

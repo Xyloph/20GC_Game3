@@ -11,12 +11,8 @@ var camera_default_position : Vector2
 func _ready() -> void:
 	camera_default_position = camera.position
 	camera.make_current()
-	camera.limit_right = lower_right.position.x
-	camera.limit_bottom = lower_right.position.y
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	camera.limit_right = int(lower_right.position.x)
+	camera.limit_bottom = int(lower_right.position.y)
 
 func _on_level_focus_frog(frog: Frog) -> void:
 	var tw := get_tree().create_tween().set_ease(Tween.EASE_IN_OUT).set_parallel()

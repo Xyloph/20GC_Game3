@@ -43,15 +43,15 @@ func _player_detached(floating_log:WaterThing):
 	frog.unfollow_log(floating_log)
 
 # a car detected a body
-func _car_crash(vehicule:Vehicule, frog:Frog):
-	frog.crash(vehicule.direction)
+func _car_crash(vehicule:Vehicule, my_frog:Frog):
+	my_frog.crash(vehicule.direction)
 
 # enable drowning detection
-func _on_drown_area_body_entered(body: Node2D) -> void:
+func _on_drown_area_body_entered(_body: Node2D) -> void:
 	frog.enter_river()
 
 # disable drowning detection
-func _on_drown_area_body_exited(body: Node2D) -> void:
+func _on_drown_area_body_exited(_body: Node2D) -> void:
 	frog.leave_river()
 
 # restart the level

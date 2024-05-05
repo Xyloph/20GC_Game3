@@ -6,9 +6,11 @@ class_name Frog
 @onready var frog_jump: Sprite2D = $"Frog-jump"
 @onready var frog: Frog = $"."
 @onready var frogsplosion: Frogsplosion
+@onready var jump_sound: AudioStreamPlayer = $JumpPlayer
 
 # easier to reload that one than reuse it
 @onready var frogsplosion_scene = preload("res://scenes/Frogsplosion.tscn")
+@onready var death_sound: AudioStreamPlayer = $DeathPlayer
 
 const travel_distance := 85.0 # this is equally abstract as the hand-drawn level
 var moving := false
@@ -19,6 +21,8 @@ var drowning := false
 var exploding := false
 var winning := false
 var move_tween : Tween # to be able to stop it when dying
+var crash_sound := preload("res://sounds/crash.wav")
+var drown_sound := preload("res://sounds/drown.wav")
 
 # emitted once the frog is done drowning
 signal dead
@@ -79,6 +83,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 			move_tween = get_tree().create_tween()
 			move_tween.tween_property(frog, "position", target_position, 0.5)
 			move_tween.tween_callback(_done_moving)
+			jump_sound.play()
 	
 func _done_moving() -> void:
 	moving = false
@@ -118,6 +123,8 @@ func _drown() -> void:
 	tw.tween_method(func(value:float) : frog.material.set_shader_parameter("drowning",value), 0.0, 1.4, 1.8)
 	# call dead signal after playing the animation
 	tw.tween_callback(func():dead.emit())
+	death_sound.stream = drown_sound
+	death_sound.play()
 
 # Reset the frog vars, used after death
 func reset() -> void:
@@ -157,6 +164,9 @@ func crash(direction: Vehicule.going):
 		# reset the frog direction so it blows up the correct way
 		rotation = 0
 		frogsplosion.play(direction)
+		death_sound.stream = crash_sound
+		death_sound.play()
+		
 		
 func _done_exploding() -> void:
 	print ("done")
