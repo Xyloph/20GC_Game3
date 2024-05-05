@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://coe8pqq3yp4se"]
+[gd_scene load_steps=16 format=3 uid="uid://coe8pqq3yp4se"]
 
 [ext_resource type="Texture2D" uid="uid://cv04akyx3pave" path="res://art/background.png" id="1_ebefu"]
 [ext_resource type="Script" path="res://scripts/Level.gd" id="1_qby6n"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dyw5flvx7s8up" path="res://scenes/Vehicules/Truck3.tscn" id="9_1o6dn"]
 [ext_resource type="PackedScene" uid="uid://dkorc7bphdjc7" path="res://scenes/WaterStuff/Log1.tscn" id="10_lkfi0"]
 [ext_resource type="PackedScene" uid="uid://b6535q230xmos" path="res://scenes/Lillypad.tscn" id="11_lui3d"]
+[ext_resource type="PackedScene" uid="uid://def0npwxwfvhc" path="res://scenes/win.tscn" id="13_ffhhi"]
 [ext_resource type="PackedScene" uid="uid://kdrwe6r5rxot" path="res://scenes/WaterStuff/Log3.tscn" id="13_steyq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eykrh"]
@@ -205,6 +206,13 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DrownArea"]
 position = Vector2(465.5, 230.5)
 shape = SubResource("RectangleShape2D_bmb4c")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="WinScene" parent="CanvasLayer" instance=ExtResource("13_ffhhi")]
+visible = false
 
 [connection signal="dead" from="Frog" to="." method="_on_frog_dead"]
 [connection signal="focus" from="Frog" to="." method="_on_frog_focus"]

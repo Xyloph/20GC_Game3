@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3 uid="uid://def0npwxwfvhc"]
+
+[ext_resource type="Script" path="res://scripts/win.gd" id="1_rkycn"]
+[ext_resource type="Texture2D" uid="uid://ckv58qpbqk55f" path="res://art/win.png" id="1_sk5ba"]
+
+[node name="WinScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rkycn")
+
+[node name="Container" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Container"]
+layout_mode = 2
+texture = ExtResource("1_sk5ba")
+
+[node name="YesButton" type="Button" parent="Container/TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.39
+anchor_top = 0.587
+anchor_right = 0.498
+anchor_bottom = 0.736
+offset_left = 0.269989
+offset_top = 0.149994
+offset_right = -0.286011
+offset_bottom = 0.199951
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NoButton" type="Button" parent="Container/TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.58
+anchor_top = 0.575
+anchor_right = 0.722
+anchor_bottom = 0.742
+offset_left = -0.0600281
+offset_top = -0.250031
+offset_right = -0.254028
+offset_bottom = -0.100037
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="Container/TextureRect/YesButton" to="." method="_on_yes_button_pressed"]
+[connection signal="pressed" from="Container/TextureRect/NoButton" to="." method="_on_no_button_pressed"]

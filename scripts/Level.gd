@@ -3,6 +3,7 @@ extends Node2D
 @onready var area_shape: CollisionShape2D = $RestartOnExit/CollisionShape2D
 @onready var frog: Frog = $Frog
 @onready var start_position := frog.position
+@onready var win_scene: Control = $CanvasLayer/WinScene
 
 var win_count := 0
 
@@ -71,7 +72,7 @@ func _winning() -> void:
 	
 	if win_count == 5:
 		# grats!
-		# TODO
+		win_scene.show()
 		pass
 
 func _on_frog_won() -> void:
