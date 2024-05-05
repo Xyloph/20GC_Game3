@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/Lillypad.gd" id="1_ltf3m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7bovu"]
-size = Vector2(86, 91)
+size = Vector2(69, 91)
 
 [node name="Lillypad" type="Node2D"]
 script = ExtResource("1_ltf3m")
@@ -17,7 +17,7 @@ texture = ExtResource("1_bsfbp")
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WinArea"]
-position = Vector2(1, 5.5)
+position = Vector2(1.5, 5.5)
 shape = SubResource("RectangleShape2D_7bovu")
 debug_color = Color(0.701961, 0.243137, 0, 0.419608)
 

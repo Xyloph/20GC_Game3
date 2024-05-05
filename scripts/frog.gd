@@ -75,26 +75,40 @@ func _input(event: InputEvent) -> void:
 					move_down = true
 				elif mouse_pos.y < -70.:
 					move_up = true
+		else:
+			var input_mov_vec := Input.get_vector("left", "right", "up", "down")
+			if abs(input_mov_vec.x) > abs(input_mov_vec.y):
+				# left/right
+				if input_mov_vec.x > 0.:
+					move_right = true
+				elif input_mov_vec.x < 0.:
+					move_left = true
+			else:
+				# up/down
+				if input_mov_vec.y > 0.:
+					move_down = true
+				elif input_mov_vec.y < 0.:
+					move_up = true
 		
-		if event.is_action("ui_left") or move_left:
+		if move_left:
 			# move left
 			moving = true
 			rotation = 3*PI/2
 			target_position.x -= travel_distance
 			pass
-		elif event.is_action("ui_right") or move_right:
+		elif move_right:
 			# move right
 			moving = true
 			rotation = PI / 2
 			target_position.x += travel_distance
 			pass
-		elif event.is_action("ui_up") or move_up:
+		elif move_up:
 			# move up
 			moving = true
 			rotation = 0
 			target_position.y -= travel_distance
 			pass
-		elif event.is_action("ui_down") or move_down:
+		elif move_down:
 			# move down
 			moving = true
 			rotation = PI
