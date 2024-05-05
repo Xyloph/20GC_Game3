@@ -50,28 +50,51 @@ func _process(delta: float) -> void:
 		elif winning:
 			won.emit()
 	
-func _unhandled_key_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if not moving and not drowning and not exploding:
 		var target_position = Vector2(position)
-		if event.is_action("ui_left"):
+		
+		# flags for mouse/touch based movements
+		var move_left := false
+		var move_up := false
+		var move_down := false
+		var move_right := false
+
+		# set movement from click position
+		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+			var mouse_pos = get_global_mouse_position() - position
+			if abs(mouse_pos.x) > abs(mouse_pos.y):
+				# left/right
+				if mouse_pos.x > 70.:
+					move_right = true
+				elif mouse_pos.x < -70.:
+					move_left = true
+			else:
+				# up/down
+				if mouse_pos.y > 70.:
+					move_down = true
+				elif mouse_pos.y < -70.:
+					move_up = true
+		
+		if event.is_action("ui_left") or move_left:
 			# move left
 			moving = true
 			rotation = 3*PI/2
 			target_position.x -= travel_distance
 			pass
-		elif event.is_action("ui_right"):
+		elif event.is_action("ui_right") or move_right:
 			# move right
 			moving = true
 			rotation = PI / 2
 			target_position.x += travel_distance
 			pass
-		elif event.is_action("ui_up"):
+		elif event.is_action("ui_up") or move_up:
 			# move up
 			moving = true
 			rotation = 0
 			target_position.y -= travel_distance
 			pass
-		elif event.is_action("ui_down"):
+		elif event.is_action("ui_down") or move_down:
 			# move down
 			moving = true
 			rotation = PI
