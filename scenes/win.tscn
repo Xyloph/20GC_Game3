@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://def0npwxwfvhc"]
+[gd_scene load_steps=4 format=3 uid="uid://def0npwxwfvhc"]
 
 [ext_resource type="Script" path="res://scripts/win.gd" id="1_rkycn"]
 [ext_resource type="Texture2D" uid="uid://ckv58qpbqk55f" path="res://art/win.png" id="1_sk5ba"]
+[ext_resource type="Theme" uid="uid://bal4daqbom5mw" path="res://theme.tres" id="3_5s3lw"]
 
 [node name="WinScene" type="Control"]
 layout_mode = 3
@@ -37,6 +38,7 @@ offset_right = -0.286011
 offset_bottom = 0.199951
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_5s3lw")
 
 [node name="NoButton" type="Button" parent="Container/TextureRect"]
 layout_mode = 1
@@ -51,6 +53,7 @@ offset_right = -0.254028
 offset_bottom = -0.100037
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_5s3lw")
 
 [connection signal="pressed" from="Container/TextureRect/YesButton" to="." method="_on_yes_button_pressed"]
 [connection signal="pressed" from="Container/TextureRect/NoButton" to="." method="_on_no_button_pressed"]
