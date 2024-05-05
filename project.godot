@@ -27,6 +27,10 @@ window/stretch/mode="canvas_items"
 movie_writer/mjpeg_quality=1.0
 movie_writer/movie_file="c:\\temp\\waves.avi"
 
+[layer_names]
+
+2d_physics/layer_3="Layer 3"
+
 [physics]
 
 2d/default_gravity_vector=Vector2(0, 0)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://coe8pqq3yp4se"]
+[gd_scene load_steps=17 format=3 uid="uid://coe8pqq3yp4se"]
 
 [ext_resource type="Texture2D" uid="uid://cv04akyx3pave" path="res://art/background.png" id="1_ebefu"]
 [ext_resource type="Script" path="res://scripts/Level.gd" id="1_qby6n"]
@@ -19,6 +19,9 @@ size = Vector2(1440, 738)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bmb4c"]
 size = Vector2(1787, 355)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pg845"]
+size = Vector2(912, 968)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_qby6n")
@@ -214,9 +217,20 @@ shape = SubResource("RectangleShape2D_bmb4c")
 [node name="WinScene" parent="CanvasLayer" instance=ExtResource("13_ffhhi")]
 visible = false
 
+[node name="WorldBoundaries" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="WorldArea" type="CollisionShape2D" parent="WorldBoundaries"]
+visible = false
+position = Vector2(456, 484)
+shape = SubResource("RectangleShape2D_pg845")
+debug_color = Color(0.972549, 0.701961, 1, 0.419608)
+
 [connection signal="dead" from="Frog" to="." method="_on_frog_dead"]
 [connection signal="focus" from="Frog" to="." method="_on_frog_focus"]
 [connection signal="won" from="Frog" to="." method="_on_frog_won"]
 [connection signal="area_exited" from="RestartOnExit" to="." method="_on_restart_on_exit_area_exited"]
 [connection signal="body_entered" from="DrownArea" to="." method="_on_drown_area_body_entered"]
 [connection signal="body_exited" from="DrownArea" to="." method="_on_drown_area_body_exited"]
+[connection signal="body_exited" from="WorldBoundaries" to="." method="_on_world_boundaries_body_exited"]

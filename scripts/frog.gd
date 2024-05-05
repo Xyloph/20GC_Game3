@@ -46,7 +46,7 @@ func _process(delta: float) -> void:
 		
 		# Drown check
 		if log_velocity == Vector2.ZERO and in_river and not winning:
-			_drown()
+			drown()
 		elif winning:
 			won.emit()
 	
@@ -113,8 +113,7 @@ func leave_river() -> void:
 	in_river = false
 
 # Drown animation then emit signal
-func _drown() -> void:
-	print("drown")
+func drown() -> void:
 	rotation = 0 # it looks better drowning down, so head up
 	drowning = true
 	focus.emit()
@@ -128,7 +127,6 @@ func _drown() -> void:
 
 # Reset the frog vars, used after death
 func reset() -> void:
-	print("frog reset")
 	frog.material.set_shader_parameter("drowning",0.0)
 	exploding = false
 	in_river = false
@@ -169,5 +167,4 @@ func crash(direction: Vehicule.going):
 		
 		
 func _done_exploding() -> void:
-	print ("done")
 	dead.emit()

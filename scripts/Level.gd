@@ -77,3 +77,6 @@ func _winning() -> void:
 
 func _on_frog_won() -> void:
 	restart()
+
+func _on_world_boundaries_body_exited(_body: Node2D) -> void:
+	frog.drown()
